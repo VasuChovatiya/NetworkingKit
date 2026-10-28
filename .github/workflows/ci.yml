@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/realm/swiftlint:0.65.1
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: SwiftLint
         run: swiftlint lint --strict --reporter github-actions-logging
 
   test:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Toolchain
         run: swift --version
       - name: Build and test
