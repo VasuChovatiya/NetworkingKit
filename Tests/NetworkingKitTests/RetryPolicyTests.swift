@@ -30,7 +30,9 @@ struct RetryPolicyTests {
         let response = try #require(HTTPURLResponse(url: url, statusCode: 429, httpVersion: nil, headerFields: ["Retry-After": " 7 "]))
         #expect(RetryPolicy.retryAfter(from: response) == .seconds(7))
 
-        let dateForm = try #require(HTTPURLResponse(url: url, statusCode: 429, httpVersion: nil, headerFields: ["Retry-After": "Wed, 21 Oct 2026 07:28:00 GMT"]))
+        let dateForm = try #require(HTTPURLResponse(
+            url: url, statusCode: 429, httpVersion: nil, headerFields: ["Retry-After": "Wed, 21 Oct 2026 07:28:00 GMT"]
+        ))
         #expect(RetryPolicy.retryAfter(from: dateForm) == nil)
     }
 

@@ -14,10 +14,13 @@ public actor MockTransport: HTTPTransport {
         case failure(any Error)
 
         public static func json(_ string: String, status: Int = 200, headers: [String: String] = [:]) -> Response {
-            .http(status: status, body: Data(string.utf8), headers: headers.merging(["Content-Type": "application/json"]) { a, _ in a })
+            let headers = headers.merging(["Content-Type": "application/json"]) { a, _ in a }
+            return .http(status: status, body: Data(string.utf8), headers: headers)
         }
 
-        public static func json<T: Encodable>(encoding value: T, status: Int = 200, encoder: JSONEncoder = JSONEncoder()) throws -> Response {
+        public static func json<T: Encodable>(
+            encoding value: T, status: Int = 200, encoder: JSONEncoder = JSONEncoder()
+        ) throws -> Response {
             .http(status: status, body: try encoder.encode(value), headers: ["Content-Type": "application/json"])
         }
 
@@ -69,7 +72,9 @@ public actor MockTransport: HTTPTransport {
             throw error
         case .http(let status, let body, let headers):
             let url = request.url ?? URL(string: "about:blank")!
-            let http = HTTPURLResponse(url: url, statusCode: status, httpVersion: "HTTP/1.1", headerFields: headers)!
+            guard let http = HTTPURLResponse(url: url, statusCode: status, httpVersion: "HTTP/1.1", headerFields: headers) else {
+                throw URLError(.badServerResponse)
+            }
             return (body, http)
         }
     }

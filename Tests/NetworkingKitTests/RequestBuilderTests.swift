@@ -13,7 +13,7 @@ struct RequestBuilderTests {
         ("https://api.example.com/3", "movie/popular"),
     ])
     func joinsPaths(base: String, path: String) throws {
-        let builder = RequestBuilder(baseURL: URL(string: base)!)
+        let builder = RequestBuilder(baseURL: try #require(URL(string: base)))
         let request = try builder.makeRequest(for: Endpoint<EmptyResponse>(path: path))
         #expect(request.url?.absoluteString == "https://api.example.com/3/movie/popular")
     }

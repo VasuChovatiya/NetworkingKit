@@ -1,0 +1,65 @@
+excluded:
+  - .build
+  - DerivedData
+  - scripts
+
+disabled_rules:
+  # Trailing commas keep diffs to one line when lists grow; Swift 6.1 allows them everywhere.
+  - trailing_comma
+  # SwiftUI APIs like Button(action:label:) read best with a trailing label closure.
+  - multiple_closures_with_trailing_closure
+  # Explicit raw values pin what SwiftData and Codable store, so renaming a case can't break saved data.
+  - redundant_string_enum_value
+
+opt_in_rules:
+  - empty_count
+  - first_where
+  - closure_spacing
+  - unused_import
+  - force_unwrapping
+
+line_length:
+  warning: 140
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+identifier_name:
+  excluded:
+    # Design-token sizes
+    - xs
+    - sm
+    - md
+    - lg
+    - xl
+    - s
+    - m
+    - l
+    # Comparator arguments, colour channels and common short names
+    - a
+    - b
+    - r
+    - g
+    - id
+    - x
+    - y
+    - tx
+    - ms
+
+large_tuple:
+  warning: 4
+  error: 5
+
+# SwiftUI views are long by nature; split them before they pass these.
+type_body_length:
+  warning: 350
+  error: 500
+file_length:
+  warning: 550
+  error: 800
+function_body_length:
+  warning: 80
+  error: 120
+cyclomatic_complexity:
+  warning: 15
+  error: 25
