@@ -4,6 +4,7 @@
 ![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20%7C%20macOS%2014-blue)
 ![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+[![SwiftLint](https://img.shields.io/badge/code_style-SwiftLint-F05138?logo=swift&logoColor=white)](.swiftlint.yml)
 
 A small, dependency-free networking layer for Swift apps, built on async/await and Swift 6 strict concurrency.
 
