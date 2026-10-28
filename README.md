@@ -7,7 +7,7 @@
 
 A small, dependency-free networking layer for Swift apps, built on async/await and Swift 6 strict concurrency.
 
-It grew out of [Generic_API_With_Pagination](https://github.com/VasuChovatiya/Generic_API_With_Pagination) and now powers [Filmy](https://github.com/VasuChovatiya/Filmy), a TMDB movie browser.
+It grew out of a generic API and pagination layer I reused across client apps, and now powers [Filmy](https://github.com/VasuChovatiya/Filmy), a TMDB movie browser.
 
 ## Features
 
